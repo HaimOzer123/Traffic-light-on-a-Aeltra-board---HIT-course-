@@ -1,0 +1,21 @@
+library ieee;
+Use ieee.std_logic_1164.all;
+use ieee.std_logic_unsigned.all;
+
+entity TopRamzor is port (
+	CLOCK50_: in STD_LOGIC;
+	sw: in STD_LOGIC_VECTOR(1 downto 0);
+	ledr: out STD_LOGIC_VECTOR(5 downto 0)
+	);
+end;
+
+architecture arc of TopRamzor is
+component ramzor is port (
+TEST,STBY,CLOCK: in STD_LOGIC;
+r1,y1,g1,r2,g2,y2: buffer STD_LOGIC);
+end component;
+
+begin
+Total: ramzor port map(
+sw(0),sw(1),CLOCK50_, ledr(0), ledr(1), ledr(2), ledr(3), ledr(5), ledr(4));
+end;
